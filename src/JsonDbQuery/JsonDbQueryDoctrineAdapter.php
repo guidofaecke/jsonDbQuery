@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace JsonDbQuery;
 
-use Doctrine\ORM\EntityManager;
 use Assert\Assertion;
+use Doctrine\ORM\EntityManager;
 
-class JsonDbQueryDoctrineAdapter implements JsonDbQueryAdapter
+class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQueryAdapter
 {
     /** @var EntityManager */
     private $entityManager;
@@ -30,5 +30,15 @@ class JsonDbQueryDoctrineAdapter implements JsonDbQueryAdapter
         Assertion::isJsonString($jsonQueryString);
 
         $this->jsonQueryString = $jsonQueryString;
+    }
+
+    /**
+     *
+     * {@inheritDoc}
+     * @see \JsonDbQuery\JsonDbQueryAdapter::from()
+     */
+    public function from($tableName)
+    {
+        return $this;
     }
 }

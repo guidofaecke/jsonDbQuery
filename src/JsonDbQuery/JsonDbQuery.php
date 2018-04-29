@@ -8,17 +8,32 @@ class JsonDbQuery
 {
     private $queryAdapter;
 
-    private $jsonQueryString;
+    private $jsonQuery;
 
     private $decodedQuery;
+
+    private $table;
 
     public function __construct(JsonDbQueryAdapter $queryAdapter)
     {
         $this->queryAdapter = $queryAdapter;
     }
 
-    public function noNameYet()
+    /**
+     *
+     * @param string $table
+     *
+     * @return self Provides a fluent interface
+     */
+    public function from(string $table) : self
     {
-        return $this->decodedQuery;
+        $this->table = $table;
+
+        return $this;
+    }
+
+    public function jsonQuery(string $jsonQuery)
+    {
+        $this->queryAdapter->jsonQueryString($jsonQuery);
     }
 }

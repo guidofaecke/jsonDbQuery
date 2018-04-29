@@ -7,7 +7,7 @@ namespace JsonDbQuery;
 use Zend\Db\Adapter\Adapter;
 use Assert\Assertion;
 
-class JsonDbQueryZendDbAdapter implements JsonDbQueryAdapter
+class JsonDbQueryZendDbAdapter extends JsonDbQueryCommon implements JsonDbQueryAdapter
 {
     /** @var Adapter */
     private $adapter;
@@ -22,5 +22,10 @@ class JsonDbQueryZendDbAdapter implements JsonDbQueryAdapter
         Assertion::isJsonString($jsonQueryString);
 
         $this->jsonQueryString = $jsonQueryString;
+    }
+
+    public function from($tableName) : self
+    {
+        return $this;
     }
 }
