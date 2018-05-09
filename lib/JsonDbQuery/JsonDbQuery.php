@@ -27,7 +27,7 @@ class JsonDbQuery
      */
     public function from(string $table) : self
     {
-        $this->table = $table;
+        $this->queryAdapter->from($table);
 
         return $this;
     }
@@ -35,5 +35,10 @@ class JsonDbQuery
     public function jsonQuery(string $jsonQuery)
     {
         $this->queryAdapter->jsonQueryString($jsonQuery);
+    }
+
+    public function generate()
+    {
+        return $this->queryAdapter->generate();
     }
 }

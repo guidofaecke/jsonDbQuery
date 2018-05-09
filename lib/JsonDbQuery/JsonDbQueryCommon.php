@@ -10,7 +10,7 @@ class JsonDbQueryCommon
         'not',
         'in',
         'nin',
-        'or',
+        '$or',
         'and',
     ];
 
