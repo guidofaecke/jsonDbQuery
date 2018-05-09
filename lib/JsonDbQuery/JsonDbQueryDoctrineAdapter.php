@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
+use JsonDbQuery\Models\EntityFixture;
 
 class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQueryAdapter
 {
@@ -66,25 +67,25 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
     {
 //         Assertion::notNull($this->tableName);
 
-//         $query = json_decode($this->jsonQueryString, true);
+        $query = json_decode($this->jsonQueryString, true);
 
-//         $key = key($query);
-//         if (array_search($key, $this->logicOperators)) {
-//             switch ($key) {
-//                 case '$or':
-//                     $criteria = $this->buildOr(current($query));
-//                     break;
-//             }
-//         }
+        $key = key($query);
+        if (array_search($key, $this->logicOperators)) {
+            switch ($key) {
+                case '$or':
+                    $criteria = $this->buildOr(current($query));
+                    break;
+            }
+        }
 
 
-//         $this->query = $this->entityManager->createQueryBuilder();
-//         $this->query->select('thing');
-// //         $this->query->from(EntityFixture::class, 'thing');
-//         $this->query->addCriteria($criteria);
+        $this->query = $this->entityManager->createQueryBuilder();
+        $this->query->select('thing');
+        $this->query->from(EntityFixture::class, 'thing');
+        $this->query->addCriteria($criteria);
 
-//         var_dump($this->query->getQuery()->getSQL());
-//         die();
+        var_dump($this->query->getQuery()->getSQL());
+        die();
 //             'select t1 from JsonDbQuery\Tests\Models\EntityFixture t1'
 //         );
 

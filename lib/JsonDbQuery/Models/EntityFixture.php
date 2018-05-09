@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace JsonDbQuery\Tests\Models;
+namespace JsonDbQuery\Models;
 
 use Doctrine\ORM\Mapping as ORM;
 
