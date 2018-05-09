@@ -9,7 +9,6 @@ use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
-use JsonDbQuery\Models\EntityFixture;
 
 class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQueryAdapter
 {
@@ -81,7 +80,7 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
 
         $this->query = $this->entityManager->createQueryBuilder();
         $this->query->select('thing');
-        $this->query->from(EntityFixture::class, 'thing');
+        $this->query->from($this->tableName, 'thing');
         $this->query->addCriteria($criteria);
 
         var_dump($this->query->getQuery()->getSQL());
