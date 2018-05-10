@@ -22,7 +22,12 @@
         "beberlei/assert" : "~2.9",
         "doctrine/doctrine-orm-module" : "^2.1",
         "phpunit/phpunit" : "^6.1",
+        "squizlabs/php_codesniffer" : "^3.2",
         "zendframework/zend-db" : "^2.9"
+    },
+    "suggest" : {
+        "doctrine/doctrine-orm-module" : "Needed to use JsonDbQuery with Doctrine ORM",
+        "zendframework/zend-db" : "Needed to use JsonDbQuery with ZendFramework DB"
     },
     "autoload" : {
         "psr-4" : {
