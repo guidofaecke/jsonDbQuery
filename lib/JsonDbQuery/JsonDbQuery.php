@@ -6,13 +6,8 @@ namespace JsonDbQuery;
 
 class JsonDbQuery
 {
+    /** @var JsonDbQueryAdapter */
     private $queryAdapter;
-
-    private $jsonQuery;
-
-    private $decodedQuery;
-
-    private $table;
 
     public function __construct(JsonDbQueryAdapter $queryAdapter)
     {
@@ -20,8 +15,9 @@ class JsonDbQuery
     }
 
     /**
+     * Set the table name
      *
-     * @param string $table
+     * @param string $table table name
      *
      * @return self Provides a fluent interface
      */
@@ -32,12 +28,12 @@ class JsonDbQuery
         return $this;
     }
 
-    public function jsonQuery(string $jsonQuery)
+    public function jsonQuery(string $jsonQuery) : void
     {
         $this->queryAdapter->jsonQueryString($jsonQuery);
     }
 
-    public function generate()
+    public function generate() : string
     {
         return $this->queryAdapter->generate();
     }

@@ -6,13 +6,24 @@ namespace JsonDbQuery;
 
 interface JsonDbQueryAdapter
 {
-    public function jsonQueryString(string $jsonQueryString);
+    /**
+     * Place the query string
+     *
+     * @param string $jsonQueryString The query string
+     */
+    public function jsonQueryString(string $jsonQueryString) : void;
 
     /**
+     * Set the table
      *
      * @param string|string[] $tableName String or Array Alias => Table Name
      */
-    public function from($tableName);
+    public function from($tableName) : self;
 
-    public function generate();
+    /**
+     * Generate the sql
+     *
+     * @return string SQL string perhaps
+     */
+    public function generate() : string;
 }

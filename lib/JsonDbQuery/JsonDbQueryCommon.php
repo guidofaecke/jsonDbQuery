@@ -6,6 +6,7 @@ namespace JsonDbQuery;
 
 class JsonDbQueryCommon
 {
+    /** @var string[] */
     protected $logicOperators = [
         'not',
         'in',
@@ -14,6 +15,7 @@ class JsonDbQueryCommon
         '$and',
     ];
 
+    /** @var string[] */
     protected $conditionalOperators = [
         '$gt',
         '$gte',

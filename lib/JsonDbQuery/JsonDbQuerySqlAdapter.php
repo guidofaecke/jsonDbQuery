@@ -12,7 +12,7 @@ class JsonDbQuerySqlAdapter implements JsonDbQueryAdapter
     {
     }
 
-    public function jsonQueryString(string $jsonQueryString)
+    public function jsonQueryString(string $jsonQueryString) : void
     {
         Assertion::isJsonString($jsonQueryString);
 
@@ -21,18 +21,20 @@ class JsonDbQuerySqlAdapter implements JsonDbQueryAdapter
 
     /**
      * {@inheritDoc}
+     *
      * @see \JsonDbQuery\JsonDbQueryAdapter::from()
      */
-    public function from($tableName)
+    public function from($tableName) : self
     {
         // TODO Auto-generated method stub
     }
 
     /**
+     * Generate SQL statement
      *
-     * @return string
+     * @return string test sql
      */
-    public function generate()
+    public function generate() : string
     {
         return 'select * from x';
     }

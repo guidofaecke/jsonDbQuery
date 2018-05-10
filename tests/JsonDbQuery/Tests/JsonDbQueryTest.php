@@ -124,11 +124,11 @@ class JsonDbQueryTest extends TestCase
 // var_dump($query);
 // // var_dump($query->getDQL());
 // // var_dump($query->getSQL());
-// // //         $jdb->from('EntityFixture');
+        $jdb->from('EntityFixture');
         $jdb->jsonQuery($query);
         $test = $jdb->generate();
 // // //         $test = $jdb->noNameYet();
-// //         var_dump($test);
+        var_dump($test);
     }
 
     private static function getServiceManger(array $config = null)

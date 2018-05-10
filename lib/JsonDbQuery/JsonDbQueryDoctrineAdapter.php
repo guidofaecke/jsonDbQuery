@@ -7,7 +7,6 @@ namespace JsonDbQuery;
 use Assert\Assertion;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Query;
 use Doctrine\ORM\QueryBuilder;
 
 class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQueryAdapter
@@ -27,14 +26,19 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
     /**
      * Initialize new instance of JsonDbQueryDoctrineAdapter
      *
-     * @param EntityManager $entityManager
+     * @param EntityManager $entityManager ORM Entity Manager
      */
     public function __construct(EntityManager $entityManager)
     {
         $this->entityManager = $entityManager;
     }
 
-    public function jsonQueryString(string $jsonQueryString)
+    /**
+     * {@inheritDoc}
+     *
+     * @see \JsonDbQuery\JsonDbQueryAdapter::jsonQueryString()
+     */
+    public function jsonQueryString(string $jsonQueryString) : void
     {
         Assertion::isJsonString($jsonQueryString);
 
@@ -42,27 +46,33 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
     }
 
     /**
+     * Set the table name
      *
      * {@inheritDoc}
+     *
      * @see \JsonDbQuery\JsonDbQueryAdapter::from()
      */
-    public function from($tableName)
+    public function from($tableName) : self
     {
         $this->tableName = $tableName;
 
         return $this;
     }
 
-    public function someTest()
+    /**
+     * Nothing to see here
+     */
+    public function someTest() : void
     {
         $this->query = $this->entityManager->createQuery();
     }
 
     /**
+     * Generate something
      *
-     * @return Query
+     * @return string query
      */
-    public function generate()
+    public function generate() : string
     {
         Assertion::notNull($this->tableName);
 
@@ -88,31 +98,36 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
                 switch ($operator) {
                     case '$gt':
                         $criteria = $this->buildGreaterThan($key, $query[$key][key($query[$key])]);
+                        break;
                     case '$gte':
                         $criteria = $this->buildGreaterThanEqual($key, $query[$key][key($query[$key])]);
+                        break;
                     case '$lt':
                         $criteria = $this->buildLessThan($key, $query[$key][key($query[$key])]);
+                        break;
                     case '$lte':
                         $criteria = $this->buildLessThanEqual($key, $query[$key][key($query[$key])]);
+                        break;
                 }
             }
-
         }
 
         $this->query = $this->entityManager->createQueryBuilder();
         $this->query->select('thing');
         $this->query->from($this->tableName, 'thing');
         $this->query->addCriteria($criteria);
+
+        return $this->query->getQuery()->getSQL();
     }
 
-    private function buildSql($item, $key)
-    {
-        var_dump($key);
-        var_dump($item);
-
-    }
-
-    private function buildOr(array $query)
+    /**
+     * Build the OR criteria
+     *
+     * @param mixed[] $query Column and Value pairs
+     *
+     * @return Criteria ORM Criteria
+     */
+    private function buildOr(array $query) : Criteria
     {
         $criteria = new Criteria();
 
@@ -125,7 +140,14 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
         return $criteria;
     }
 
-    private function buildAnd(array $query)
+    /**
+     * Build the AND criteria
+     *
+     * @param mixed[] $query Column and Value pairs
+     *
+     * @return Criteria ORM Criteria
+     */
+    private function buildAnd(array $query) : Criteria
     {
         $criteria = new Criteria();
 
@@ -138,7 +160,15 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
         return $criteria;
     }
 
-    private function buildGreaterThan($field, $value)
+    /**
+     * Build the GT criteria
+     *
+     * @param string $field Column Name
+     * @param mixed  $value Column Value
+     *
+     * @return Criteria ORM Criteria
+     */
+    private function buildGreaterThan(string $field, $value) : Criteria
     {
         $criteria = new Criteria();
 
@@ -149,7 +179,15 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
         return $criteria;
     }
 
-    private function buildGreaterThanEqual($field, $value)
+    /**
+     * Build the GTE criteria
+     *
+     * @param string $field Column Name
+     * @param mixed  $value Column Value
+     *
+     * @return Criteria ORM Criteria
+     */
+    private function buildGreaterThanEqual(string $field, $value) : Criteria
     {
         $criteria = new Criteria();
 
@@ -160,18 +198,34 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
         return $criteria;
     }
 
-    private function buildLessThan($field, $value)
+    /**
+     * Build the LT criteria
+     *
+     * @param string $field Column Name
+     * @param mixed  $value Column Value
+     *
+     * @return Criteria ORM Criteria
+     */
+    private function buildLessThan(string $field, $value) : Criteria
     {
         $criteria = new Criteria();
 
         $criteria->where(
             $criteria->expr()->lt($field, $value)
-            );
+        );
 
         return $criteria;
     }
 
-    private function buildLessThanEqual($field, $value)
+    /**
+     * Build the LTE criteria
+     *
+     * @param string $field Column Name
+     * @param mixed  $value Column Value
+     *
+     * @return Criteria ORM Criteria
+     */
+    private function buildLessThanEqual(string $field, $value) : Criteria
     {
         $criteria = new Criteria();
 
