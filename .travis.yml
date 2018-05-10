@@ -15,3 +15,4 @@ php:
 script:
   - ./vendor/bin/phpcs lib
   - ./vendor/bin/phpstan analyse -l 7 lib
+  
