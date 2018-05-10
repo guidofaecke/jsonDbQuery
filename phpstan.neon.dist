@@ -1,0 +1,6 @@
+parameters:
+	ignoreErrors:
+		- '#Function db2_connect not found.#'
+		- '#Function db2_close not found.#'
+	reportUnmatchedIgnoredErrors: false
+	

@@ -1,38 +1,39 @@
 {
-    "name" : "guidofaecke/jsondbquery",
-    "description" : "Generate SQL from URL json query string",
-    "license" : "BSD-3-Clause",
-    "keywords" : [
-        "sql",
-        "zend-db",
-        "doctrine"
-    ],
-    "config" : {
-        "sort-packages" : true
-    },
-    "authors" : [{
-            "name" : "Guido Faecke",
-            "email" : "guido@faecke.us"
-        }
-    ],
-    "require" : {
-        "php" : "^7.1"
-    },
-    "require-dev" : {
-        "beberlei/assert" : "~2.9",
-        "doctrine/doctrine-orm-module" : "^2.1",
-        "phpunit/phpunit" : "^6.1",
-        "zendframework/zend-db" : "^2.9"
-    },
-    "autoload" : {
-        "psr-4" : {
-            "JsonDbQuery\\" : "lib/JsonDbQuery"
-        }
-    },
-    "autoload-dev" : {
-        "psr-4" : {
-            "JsonDbQuery\\Tests\\" : "test/JsonDbQuery/Tests"
-        }
-    },
-    "type" : "library"
+	"name" : "guidofaecke/jsondbquery",
+	"description" : "Generate SQL from URL json query string",
+	"license" : "BSD-3-Clause",
+	"keywords" : [
+		"sql",
+		"zend-db",
+		"doctrine"
+	],
+	"config" : {
+		"sort-packages" : true
+	},
+	"authors" : [{
+			"name" : "Guido Faecke",
+			"email" : "guido@faecke.us"
+		}
+	],
+	"require" : {
+		"php" : "^7.1"
+	},
+	"require-dev" : {
+		"beberlei/assert" : "~2.9",
+		"doctrine/doctrine-orm-module" : "^2.1",
+		"phpunit/phpunit" : "^6.1",
+		"squizlabs/php_codesniffer" : "^3.2",
+		"zendframework/zend-db" : "^2.9"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"JsonDbQuery\\" : "lib/JsonDbQuery"
+		}
+	},
+	"autoload-dev" : {
+		"psr-4" : {
+			"JsonDbQuery\\Tests\\" : "test/JsonDbQuery/Tests"
+		}
+	},
+	"type" : "library"
 }
