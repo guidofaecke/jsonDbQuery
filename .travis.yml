@@ -14,6 +14,8 @@ matrix:
   allow_failures:
     - php: nightly
 
+before_script: composer install
+
 script:
   - ./vendor/bin/phpcs lib
   - ./vendor/bin/phpstan analyse -l 7 lib
