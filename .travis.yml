@@ -1,17 +1,19 @@
 language: php
 
+dist: trusty
+
 sudo: false
 
 php:
-  - php: 7.1
-  - php: 7.2
-  - php: nightly
-    
+  - 7.1
+  - 7.2
+  - nightly
+
 matrix:
   fast_finish: true
   allow_failures:
     - php: nightly
-    
+
 script:
   - ./vendor/bin/phpcs lib
   - ./vendor/bin/phpstan analyse -l 7 lib
