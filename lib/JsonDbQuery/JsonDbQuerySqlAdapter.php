@@ -8,11 +8,14 @@ use Assert\Assertion;
 
 class JsonDbQuerySqlAdapter implements JsonDbQueryAdapter
 {
+    /** @var string */
+    private $jsonQueryString;
+
     public function __construct()
     {
     }
 
-    public function jsonQueryString(string $jsonQueryString)
+    public function jsonQueryString(string $jsonQueryString) : void
     {
         Assertion::isJsonString($jsonQueryString);
 
@@ -21,6 +24,7 @@ class JsonDbQuerySqlAdapter implements JsonDbQueryAdapter
 
     /**
      * {@inheritDoc}
+     *
      * @see \JsonDbQuery\JsonDbQueryAdapter::from()
      */
     public function from($tableName)
@@ -29,11 +33,14 @@ class JsonDbQuerySqlAdapter implements JsonDbQueryAdapter
     }
 
     /**
+     * Generate SQL statement
      *
-     * @return string
+     * @return string test sql
      */
-    public function generate()
+    public function generate() : string
     {
+        $notDefinedYet = $this->jsonQueryString;
+
         return 'select * from x';
     }
 }

@@ -9,7 +9,7 @@
     <!-- Show progress of the run -->
     <arg value="np"/>
 
-    <file>module</file>
+    <file>lib</file>
     <!-- <file>tests</file> -->
 
     <config name="installed_paths" value="../../slevomat/coding-standard"/>
