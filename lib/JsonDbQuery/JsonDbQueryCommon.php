@@ -11,14 +11,14 @@ class JsonDbQueryCommon
         'in',
         'nin',
         '$or',
-        'and',
+        '$and',
     ];
 
     protected $conditionalOperators = [
-        'gt',
-        'gte',
-        'lt',
-        'lte',
+        '$gt',
+        '$gte',
+        '$lt',
+        '$lte',
         'bt',
     ];
 }
