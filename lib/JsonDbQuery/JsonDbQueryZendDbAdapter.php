@@ -20,6 +20,9 @@ class JsonDbQueryZendDbAdapter extends JsonDbQueryCommon implements JsonDbQueryA
     /** @var Select */
     private $select;
 
+    /** @var string */
+    private $jsonQueryString;
+
     public function __construct(Adapter $adapter)
     {
         $this->adapter = $adapter;
@@ -44,18 +47,18 @@ class JsonDbQueryZendDbAdapter extends JsonDbQueryCommon implements JsonDbQueryA
      *
      * @see \JsonDbQuery\JsonDbQueryAdapter::from()
      */
-    public function from($tableName) : self
+    public function from($tableName)
     {
         return $this;
     }
 
     /**
-     * @return Select
+     * @return string sql string
      */
     public function generate() : string
     {
         $this->select = $this->sql->select();
 
-        return $this->select;
+        return $this->select->getSqlString($this->adapter);
     }
 }

@@ -17,8 +17,10 @@ interface JsonDbQueryAdapter
      * Set the table
      *
      * @param string|string[] $tableName String or Array Alias => Table Name
+     *
+     * @return mixed
      */
-    public function from($tableName) : self;
+    public function from($tableName);
 
     /**
      * Generate the sql

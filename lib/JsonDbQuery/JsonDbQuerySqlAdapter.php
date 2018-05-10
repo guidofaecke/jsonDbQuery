@@ -8,6 +8,9 @@ use Assert\Assertion;
 
 class JsonDbQuerySqlAdapter implements JsonDbQueryAdapter
 {
+    /** @var string */
+    private $jsonQueryString;
+
     public function __construct()
     {
     }
@@ -24,7 +27,7 @@ class JsonDbQuerySqlAdapter implements JsonDbQueryAdapter
      *
      * @see \JsonDbQuery\JsonDbQueryAdapter::from()
      */
-    public function from($tableName) : self
+    public function from($tableName)
     {
         // TODO Auto-generated method stub
     }

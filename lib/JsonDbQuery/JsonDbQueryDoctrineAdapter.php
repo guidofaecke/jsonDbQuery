@@ -46,25 +46,21 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
     }
 
     /**
-     * Set the table name
      *
      * {@inheritDoc}
-     *
      * @see \JsonDbQuery\JsonDbQueryAdapter::from()
      */
-    public function from($tableName) : self
+    public function from($tableName)
     {
+        if (is_array($tableName)) {
+            $this->tableName = (array_values($tableName))[0];
+
+            return $this;
+        }
+
         $this->tableName = $tableName;
 
         return $this;
-    }
-
-    /**
-     * Nothing to see here
-     */
-    public function someTest() : void
-    {
-        $this->query = $this->entityManager->createQuery();
     }
 
     /**
@@ -79,6 +75,8 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
         $query = json_decode($this->jsonQueryString, true);
 
         $key = key($query);
+
+        $criteria = new Criteria();
 
         if (array_search($key, $this->logicOperators)) {
             switch ($key) {
