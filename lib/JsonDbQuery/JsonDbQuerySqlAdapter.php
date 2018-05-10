@@ -39,6 +39,8 @@ class JsonDbQuerySqlAdapter implements JsonDbQueryAdapter
      */
     public function generate() : string
     {
+        $notDefinedYet = $this->jsonQueryString;
+
         return 'select * from x';
     }
 }

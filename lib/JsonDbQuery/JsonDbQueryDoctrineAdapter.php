@@ -46,8 +46,10 @@ class JsonDbQueryDoctrineAdapter extends JsonDbQueryCommon implements JsonDbQuer
     }
 
     /**
+     * Set the table
      *
      * {@inheritDoc}
+     *
      * @see \JsonDbQuery\JsonDbQueryAdapter::from()
      */
     public function from($tableName)

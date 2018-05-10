@@ -57,6 +57,8 @@ class JsonDbQueryZendDbAdapter extends JsonDbQueryCommon implements JsonDbQueryA
      */
     public function generate() : string
     {
+        $notDefinedYet = $this->jsonQueryString;
+
         $this->select = $this->sql->select();
 
         return $this->select->getSqlString($this->adapter);
