@@ -31,12 +31,12 @@
     },
     "autoload" : {
         "psr-4" : {
-            "JsonDbQuery\\" : "lib/JsonDbQuery"
+            "JsonDbQuery\\": "lib/JsonDbQuery"
         }
     },
     "autoload-dev" : {
-        "psr-4" : {
-            "JsonDbQuery\\Tests\\" : "test/JsonDbQuery/Tests"
+        "psr-4": {
+            "JsonDbQuery\\Tests\\": "tests/JsonDbQuery"
         }
     },
     "type" : "library"

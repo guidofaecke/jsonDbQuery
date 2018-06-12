@@ -20,7 +20,6 @@ return [
         // e.g., IBM i -- have problems with globs that are not qualified.
         'config_glob_paths' => [
             realpath(__DIR__) . '/autoload/{,*.}{global,local}.php',
-            realpath(__DIR__) . '/SystemSettings/{*}.php',
         ],
         'config_cache_key' => 'application.config.cache',
         'config_cache_enabled' => false,
